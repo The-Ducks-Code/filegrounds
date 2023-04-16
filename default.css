@@ -1,0 +1,453 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+  font-family: pixel;
+  color:white;
+}
+
+h1 {
+  color: white;
+}
+h2 {
+  color: white;
+}
+a {
+color:white;
+
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-duration: .5s;
+}
+a:hover {
+  transform: rotate(4deg);
+  margin-left: 8px;
+
+  color:#333;
+
+}
+a.home:visited,
+a.home:active,
+a.home {
+  text-decoration-color: black;
+}
+a:link {
+  text-decoration: none
+}
+
+a:hover {
+  text-decoration: underline
+}
+
+/* Center website */
+.main {
+  max-width: 1000px;
+  margin: auto;
+}
+
+h1 {
+  font-size: 50px;
+  word-break: break-all;
+}
+
+.row {
+  margin: 8px -16px;
+}
+
+/* Add padding BETWEEN each column (if you want) */
+.row,
+.row > .column {
+  padding: 8px;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 33.33%;
+  display: none; /* Hide columns by default */
+  
+}
+
+/* Clear floats after rows */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+  
+}
+
+/* Content */
+.content {
+  padding: 10px;
+
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+  display: block;
+}
+
+/* Style the buttons */
+.btn {
+  background: linear-gradient(50deg, rgba(46,43,40,0.5) 0%, rgba(16,16,15,0.5) 100%);
+  color: white;
+  font-size: 14px;
+
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-left: 20px;
+  padding: 10px;
+
+  transform: rotate(0deg);
+  border: none;
+  border-radius: 10px;
+
+  transition-timing-function:cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition-duration: 1s;
+}
+#icon {
+  float: left;
+
+  padding-top: 1%;
+  width: 8%;
+  height: 8%;
+  
+  transition-timing-function:cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition-duration: .5s;
+}
+
+#icon:hover {
+  transform: rotate(20deg);
+  margin-left: 8px;
+}
+.column {
+  background-color: transparent;
+  color: white;
+  /*overflow: visible;*/
+  font-size: 15px;
+  width: 30%;
+  
+  border: none;
+  border-radius: 10px;
+  
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-duration: .5s;
+}
+.column:hover{
+  background: rgba(16, 18, 60, 0.632);
+  font-size: 18px;
+  color: white;
+
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 17px;
+  padding: 10px;
+
+  transform: rotate(4deg);
+  margin-left: 8px;
+
+  text-shadow:
+  0 1px #121211,
+  -1px 0 #121211,
+  -1px 2px #121211,
+  -2px 1px #121211,
+  -2px 3px #121211,
+  -3px 2px #121211,
+  -3px 4px #121211,
+  -4px 3px #121211,
+  -4px 5px #121211,
+  -5px 4px #121211,
+  -5px 6px #121211,
+  -6px 5px #121211,
+  -6px 7px #121211,
+  -7px 6px #121211,
+  -7px 8px #121211,
+  -8px 7px #121211;
+
+}
+#game-link:hover{
+  text-decoration: none;
+  color:white;
+
+}
+#title {
+  background: linear-gradient(240deg, rgba(16, 18, 60, 0.632) 50%, blue 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  float: left;
+  padding-left: 40px;
+  padding-top: 35px;
+  
+  font-weight: bolder;
+  transform: scaleX(1.2);
+
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-duration: 0.2s;
+}
+
+#title:hover {
+  transform:scaleX(1.4); 
+  filter: drop-shadow(0 0 0.75rem lightblue);
+}
+
+
+
+/* Add a blue background color on mouse-over */
+.btn:hover {
+  background: linear-gradient(240deg, rgba(16, 18, 60, 0.632) 50%, blue 100%);
+  font-size: 18px;
+  color: white;
+
+  margin-top: 2px;
+  margin-bottom: 2px;
+  margin-left: 17px;
+  padding: 10px;
+
+  transform: rotate(4deg);
+  margin-left: 8px;
+
+  text-shadow:
+  0 1px #121211,
+  -1px 0 #121211,
+  -1px 2px #121211,
+  -2px 1px #121211,
+  -2px 3px #121211,
+  -3px 2px #121211,
+  -3px 4px #121211,
+  -4px 3px #121211,
+  -4px 5px #121211,
+  -5px 4px #121211,
+  -5px 6px #121211,
+  -6px 5px #121211,
+  -6px 7px #121211,
+  -7px 6px #121211,
+  -7px 8px #121211,
+  -8px 7px #121211;
+}
+#news{
+  background: linear-gradient(240deg, rgba(16, 18, 60, 0.632) 50%, blue 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  float: left;
+  padding-left: 40px;
+  padding-top: 35px;
+  
+  font-weight: bolder;
+  transform: scaleX(1.0);
+
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition-duration: 0.2s;
+
+}
+#doom{
+  color:white;
+  filter: drop-shadow(0 0 0.9rem darkred);
+}
+
+#news:hover{
+  transform:scaleX(1.2); 
+  filter: drop-shadow(0 0 0.75rem lightblue);
+}
+
+/* Add a dark background color to the active button */
+.btn.active {
+  background-color: #666;
+   color: white;
+}
+/* The navigation bar */
+
+.nav {
+    background-color: #333;
+    /*
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    */
+}
+
+
+/* Links inside the navbar */
+
+.nav a {
+    display: block;
+    /*color: #f2f2f2;*/
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+
+/* Change background on mouse-over */
+
+
+/*
+.navbar a:hover {
+    background: #ddd;
+    color: black;
+}*/
+
+
+/* Main content */
+
+.main {
+    margin-top: 30px;
+    /* Add a top margin to avoid content overlay */
+}
+
+
+/* Main content */
+
+.main {
+    margin-top: 30px;
+    /* Add a top margin to avoid content overlay */
+}
+
+.container {
+    background-color: Black;
+    margin-bottom: 30px;
+    margin-top: 25px;
+    border-radius: 25px;
+}
+
+.col {
+    margin-bottom: 20px;
+}
+
+body {
+    background: url("images/background.png");
+    background-color: #333;
+    background-repeat: repeat;
+    background-size: 100%;
+
+}
+
+
+
+.comic {
+    font-family: Cursive;
+    color: magenta;
+}
+
+.pixel {
+    font-family: 'pixel';
+    color: white;
+}
+
+.sad {
+    color: red;
+}
+
+.yeeted {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+
+
+embed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@font-face {
+    font-family: "pixel";
+    src: url("fonts/minecraft-webfont.woff2");
+    src: url("fonts/minecraft-webfont.woff") format("woff"),
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap');
+#gameFinder {
+    background-image: url('searchicon.png');
+    background-position: 10px 12px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+
+.search-container {
+    margin-right: 50px;
+}
+
+ruffle-embed {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#canvas {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.splash {
+
+  font-family:Arial, Helvetica, sans-serif
+
+}
+.trail { /*cursor trail class*/
+  background-color: rgba(80, 18, 248, 0.179);
+  height: 25px;
+  width: 25px;
+  margin-top: -10px;
+  margin-left: -10px;
+  position: absolute;
+
+  border-radius: 10px;
+  
+  pointer-events: none;
+  z-index: 69 /*lmao*/;
+
+  -webkit-animation: rotating 8s linear infinite;
+  -moz-animation: rotating 8s linear infinite;
+  -ms-animation: rotating 8s linear infinite;
+  -o-animation: rotating 8s linear infinite;
+  animation: rotating 4s linear infinite;
+}
+@keyframes rotating /*used for the mouse cursor*/ {
+  from {
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    transform:scale(50px);
+    -webkit-transform: scale(50px);
+    -o-transform:scale(50px);
+
+  }
+  to {
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    transform:scale(100px);
+    -webkit-transform:scale(100px);
+    -o-transform:scale(100px);
+  }
+}
+@keyframes rotating {
+  from {
+    -ms-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+    transform:scale(50px);
+    -webkit-transform: scale(50px);
+    -o-transform:scale(50px);
+  }
+  to {
+    -ms-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+    transform:scale(100px);
+    -webkit-transform:scale(100px);
+    -o-transform:scale(100px);
+  }
+}

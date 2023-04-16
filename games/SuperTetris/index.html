@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Super Tetris</title>
+  <style>
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  canvas {
+    border: 5px solid black;
+  }
+  </style>
+</head>
+<body>
+<canvas width="320" height="640" id="game"></canvas>
+<script src="./tetris.js"></script>
+<h2>Score:</h2>
+<label id="score"></label>
+</body>
+</html>

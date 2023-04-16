@@ -1,0 +1,81 @@
+Interactive Buddy Scripts How To Use: Copy and paste the scripts into the Interactive Buddy script engine. To get to the script engine go to the “Modes” tab and click “Scripting Engine Access…”
+
+Cannon Script: assign(yChange, (getYMouse()-getBuddyY())/20); assign(xChange, (getXMouse()-getBuddyX())/20); if(getMouseDown(), create(“bowlball”, getXMouse(), getYMouse(), 0, 0)); if(getMouseDown(), explode(getXMouse()+xChange, getYMouse()+yChange, 1));
+
+Nuke Script: t=t+1; if(t%2,shock(20,200,0,0,140,100),0) t=t+1; if(t%2,water(20,200,0,0,140,100),0) t=t+1; if(t%2,fire(20,200,0,0,140,100),0) t=t+1;
+
+Extreme Nuke (100x More Powerful): t=t+100; if(t%2,shock(20,200,0,0,140,100),0) t=t+100; if(t%2,fire(20,200,0,0,140,100),0) t=t+100; if(t%2,fire(20,200,0,0,140,100),0) t=t+100;
+
+Ultra Grenade (Use With Open Hand): if(getMouseDown(), explode(getXMouse()+xChange, getYMouse()+yChange, 1)); if(getMouseDown(), create(“molotov”, getXMouse(), getYMouse(), 0, 0)); if(getMouseDown(), create(“molotov”, getXMouse(), getYMouse(), 0, 0));
+
+30K Explosion (May Cause Crashes): x = getBuddyX(); y = getBuddyY(); power = 9999; explode(x,y,power);
+
+Mega Explosion: if(getMouseDown(), create(“grenade”, getXMouse(), getYMouse(), 0, 0)); if(getMouseDown(), explode(getXMouse()+xChange, getYMouse()+yChange, 1)); if(getMouseDown(), create(“molotov”, getXMouse(), getYMouse(), 0, 0)); if(getMouseDown(), create(“fireballs”, getXMouse(), getYMouse(), 0, 0)); if(getMouseDown(), create(“mine”, getXMouse(), getYMouse(), 0, 0));
+
+Mega Explosion (With Grenade): if(getMouseDown(), create(“grenade”, getXMouse(), getYMouse(), 0, 0)); if(getMouseDown(), explode(getXMouse()+xChange, getYMouse()+yChange, 1)); if(getMouseDown(), create(“molotov”, getXMouse(), getYMouse(), 0, 0)); if(getMouseDown(), create(“fireballs”, getXMouse(), getYMouse(), 0, 0)); if(getMouseDown(), create(“grenade”, getXMouse(), getYMouse(), 0, 0));
+
+Lightning: if(getMouseDown() && bnot(oMouse), playSound(“shock”,100)+ assign(rr,random()1000)+ assign(n,0)+ assign(t,25)+ loop(t,shock(getXMouse()+sin(n/t10+rr)15,n/t400)+assign(n,n+1) ,0); oMouse = getMouseDown()
+
+Rain Of Hell: t=t+1; if(t%2,shock(sin(t.0500)275+275,cos(t.050)0+200,0,0,140,.075,2,2,fa lse),0) t=t+1; if(t%2,water(sin(t.0500)275+270,cos(t.050)0+200,0,0,140,.075,2,2,fa lse),0) t=t+1; if(t%2,fire(sin(t.0500)275+265,cos(t.050)0+200,0,0,140,.075,2,2,fa lse),0) if(t%2,fire(sin(t.0500)275+265,cos(t.050)0+200,0,0,140,.075,2,2,fa lse),0)
+
+Happy Fire: if(getMouseDown(),fire(getXMouse(),getYM ouse(),1,1,50,20));
+
+Killer Ball: if(getMouseDown(),shock(getXMouse(),getYM ouse(),0,0,5,2)); if(getMouseDown(),water(getXMouse(),getYM ouse(),0,0,5,2)); if(getMouseDown(),fire(getXMouse(),getYM ouse(),0,0,5,2));
+
+Fire Hand: if(getMouseDown(),fire(getXMouse(),getYM ouse(),0,0,5,2)); if(getMouseDown(),fire(getXMouse(),getYM ouse(),0,0,5,2)); if(getMouseDown(),fire(getXMouse(),getYM ouse(),0,0,5,2));
+
+Fly When Happy: i=i+1; if(equal(i%50, 0), say(“My happiness is “ + getEmotion(),100)); addBuddyVel(0, 0-getEmotion()/25);
+
+Explode/Shocking: dan = 1; if(getMouseDown() && bnot(M), explode(getXMouse(),getYMouse(),dan)+ loop(10,shock(getBuddyX(),getBuddyY())) ,0); M = getMouseDown()
+
+Cursor Shield: if(firstRun(), say(“OH SHIT!!!!!!!!!!”,200)+ flashMessage(“Cursor Shield Activated.”,200) ,0); if(getMouseDown(), playSound(“shock”,25)+ shock(getXMouse()-20,getYMouse())+ shock(getXMouse()-20,getYMouse()-20)+ shock(getXMouse(),getYMouse()-20)+ shock(getXMouse()+20,getYMouse())+ shock(getXMouse()+20,getYMouse()-20)+ shock(getXMouse(),getYMouse()+20)+ shock(getXMouse()-20,getYMouse()+20)+ shock(getXMouse()+20,getYMouse()+20) ,0)
+
+Cursor Shield V2: v = 2; distance = 25; if(firstRun(), say(“OH SHIT IT’S VERSION “+v+”!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!”,200)+ flashMessage(“Cursor Shield Version “+v+” Activated.”,200) ,0); if(getMouseDown(), playSound(“shock”,25)+ shock(getXMouse()-distance,getYMouse())+ shock(getXMouse()-distance,getYMouse()-distance)+ shock(getXMouse(),getYMouse()-distance)+ shock(getXMouse()+distance,getYMouse())+ shock(getXMouse()+distance,getYMouse()-distance)+ shock(getXMouse(),getYMouse()+distance)+ shock(getXMouse()-distance,getYMouse()+distance)+ shock(getXMouse()+distance,getYMouse()+distance) ,0)
+
+Meteors:
+
+t=t+1;
+if(t%80==0, assign(a, create("bowlball", randomBet(1, 549), 100, 0, 800));
+xPos=getX(a);
+yPos=getY(a);
+fire(xPos, yPos-10, 0, 0, 10, 1);
+if(yPos>300, destroy(a));
+if(yPos>350, explode(xPos, yPos, 1));
+if(yPos>350, create("molotov", xPos, yPos, 0, 0));
+
+Electric chair:
+
+if(firstRun(), resetForces());
+if(firstRun(), setBuddyPos(287, 100));
+if(firstRun(), assign(a, create("bowlball", 275, 375, 0, 0)));
+if(firstRun(), assign(b, create("bowlball", 275, 360, 0, 0)));
+if(firstRun(), assign(c, create("bowlball", 330, 375, 0, 0)));
+if(firstRun(), assign(d, create("bowlball", 330, 360, 0, 0)));
+if(firstRun(), assign(e, create("bowlball", 330, 345, 0, 0)));
+if(firstRun(), assign(f, create("bowlball", 275, 345, 0, 0)));
+if(firstRun(), addConstraint(a, getX(a), getY(a), 0));
+if(firstRun(), addConstraint(b, getX(b), getY(b), 0));
+if(firstRun(), addConstraint(c, getX(c), getY(c), 0));
+if(firstRun(), addConstraint(d, getX(d), getY(d), 0));
+if(firstRun(), addConstraint(e, getX(e), getY(e), 0));
+if(firstRun(), addConstraint(f, getX(f), getY(f), 0));
+if(firstRun(), setBuddyPos(287, 360));
+if(firstRun(), addConstraint("lArm", 275, 355, 0));
+if(firstRun(), addConstraint("rArm", 330, 355, 0));
+if(firstRun(), addConstraint("body", 300, 360, 0));
+shock(getBuddyX()+randomBet(-20, 20),
+getBuddyY()+randomBet(-20, 20));
+
+Possesed Buddy:
+
+insanity=100; the name says it all;
+delay=25; speed of thrashing, low # means faster;
+~~~~~~~~~~~~~~~~~~;
+i=i+1;
+say("DIE MORTALS! HAHAHAHAHAH!", 100);
+if(equal(i%delay, 0), addBuddyVel(randomBet(-1*insanity, insanity), randomBet(-1*insanity, insanity)));
+gravity switching
+
+verticalGrav=0; high number means high gravity
+~~~~~~~~~~;
+addBuddyVel(0, verticalGrav-1);

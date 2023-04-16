@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TERMINAL</title>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/jquery.terminal/css/jquery.terminal.min.css"/>
+<link id="favicon" rel="icon" type="image/ico"  href="dark_favicon.ico">
+
+<style type="text/css">
+
+    .terminal,span,.cmd,div { 
+        --color: rgba(0, 127, 0, 0.99);
+    }
+    .terminal, span {
+        --size: 1.4;
+
+    }
+
+    </style>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body id="body">
+    <script src='https://code.jquery.com/jquery-3.1.1.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/gh/jcubic/static/js/wcwidth.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/jquery.terminal/js/jquery.terminal.min.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/js-polyfills/keyboard.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/jquery.terminal/js/unix_formatting.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/prismjs@1.8.1/prism.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/jquery.terminal/js/less.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/jquery.terminal/js/prism.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/figlet/lib/figlet.js'></script>
+    
+    <script>
+         // check the list of fonts at https://unpkg.com/browse/figlet@1.4.0/fonts/
+// the list can also be seen on demo of Figlet library:
+// http://patorjk.com/software/taag/#p=display&f=Standard&t=jQuery%20Terminal
+figlet.defaults({ fontPath: 'https://unpkg.com/figlet/fonts/' });
+figlet.preloadFonts(['Standard', 'Slant', 'Doom', 'LCD', 'Computer'], ready);
+
+var term;
+
+function ready() {
+    $(function() {
+    var frames = [];
+    var LINES_PER_FRAME = 14;
+    var DELAY = 67;
+    //star_wars is array of lines from 'js/star_wars.js'
+    var lines = star_wars.length;
+    for (var i=0; i<lines; i+=LINES_PER_FRAME) {
+        frames.push(star_wars.slice(i, i+LINES_PER_FRAME));
+    }
+    var stop = false;
+    //to show greetings after clearing the terminal
+    function greetings(term) {
+        term.echo('STAR WARS ASCIIMACTION\n'+
+                  'Simon Jansen (C) 1997 - 2008\n'+
+                  'www.asciimation.co.nz\n\n'+
+                  'type "play" to start animation, '+
+                  'press CTRL+D to stop');
+    }
+    function play(term, delay) {
+        var i = 0;
+        var next_delay;
+        if (delay == undefined) {
+            delay = DELAY;
+        }
+        function display() {
+            if (i == frames.length) {
+                i = 0;
+            }
+            term.clear();
+            if (frames[i][0].match(/[0-9]+/)) {
+                next_delay = frames[i][0] * delay;
+            } else {
+                next_delay = delay;
+            }
+            term.echo(frames[i++].slice(1).join('\n')+'\n');
+            if (!stop) {
+                setTimeout(display, next_delay);
+            } else {
+                term.clear();
+                greetings(term);
+                i = 0;
+            }
+        }
+        display();
+    }
+
+    $('#starwarsterm').terminal(function(command, term){
+        if (command == 'play') {
+            term.pause();
+            stop = false;
+            play(term);
+        }
+    }, {
+        width: 500,
+        height: 230,
+        prompt: 'starwars> ',
+        greetings: null,
+        onInit: function(term) {
+            greetings(term);
+        },
+        keypress: function(e, term) {
+            if (e.which == 100 && e.ctrlKey) {
+                stop = true;
+                term.resume();
+                return false;
+            }
+        }
+    });
+});
+    term = $('body').terminal( {
+        
+        // echo function will run it in each render,
+        // so text can be resized based on cols
+        helloiam: function(what) {
+                this.echo('Hello, ' + what +
+                          '. Welcome to this terminal.');
+            },
+            duck: function() {
+                this.echo('QUACK QUACK');
+            },
+            roms: function() {
+                this.echo($('<a href="stuff/roms">ROMS</a>'));
+            },
+            quake: function() {
+                this.echo($('<a href="stuff/quake">QUAKE</a>'));
+            },
+            3: function() {
+                this.echo('HALF LIFE 3 CONFIRMED :D');
+            },
+            dir: function() {
+                this.echo('Showing files in C:/TERMINAL'+
+                '\n--------------------------------'+
+                '\nmari0.exe------------------100MB'+
+                '\nsolitare.exe---------------746KB'+
+                '\nfortnite.exe---------------60GB'+
+                '\nmovies.exe-----------------1TB'+
+                '\ndesmume.exe----------------150MB'+
+                '\ngba.exe--------------------500KB'+
+                '\nn64.exe--------------------100MB'+
+                '\nfnf.exe--------------------124MB'+
+                '\natari.exe------------------1MB'+
+                '\ncookie.exe-----------------5.54MB'+
+                '\nradius.exe-----------------102.4KB'+
+                '\nflappybird.exe-------------1MB'+
+                '\ngdash.exe------------------13MB'+
+                '\nwindows.exe----------------19MB'+
+                '\nxx142-b2.exe---------------34.2KB'+
+                '\ndoom.exe-------------------15MB'+
+                '\nquake.exe------------------80MB'+
+                '\nwordle.exe-----------------12MB'+
+                '\nsleepingbeauty.exe---------1.3MB'+
+                '\nretrohaunt.exe-------------48.2KB'+
+                '\nracer.exe------------------8.45MB'+
+                '\nevilglitch.exe-------------32.3KB'+
+                '\nnes.exe--------------------107.1KB'+
+                '\ngb.exe---------------------128.2KB'+
+                '\nsnake.exe------------------133.1KB'+
+                '\ncompany.exe----------------3.06MB'+
+                '\ncar.exe--------------------123KB'+
+                '\n2048.exe-------------------642.5KB'+
+                '\nasteroids.exe--------------248.4KB'+
+                '\nfbf.exe--------------------5MB'+
+                '\nminecraft.exe--------------251.6KB'+
+                '\ncheems.exe-----------------19.2MB'+
+                '\nwarrior.exe----------------123.2MB'+
+                '\ncheems2.exe----------------42.23MB'+
+                '\nblueball.exe---------------79.24MB'+
+                '\nwolf3d.exe-----------------1.24MB'+
+                '\nsand.exe-------------------113.9KB'+
+                '\n--------------------------------');
+            },
+            credits: function() {
+                this.echo(() => render(this, "CREDITS", "Doom")+'\nFriends:\n\nEmmett Downs,\nAlex Hawkins,\nKaden Kinsella,\nEli Krovas Fistrom,\nAri,\nTristan Costello,\nDreyke Baker,\nAndrew Cannon,\nPhoniex,Zaine,\nJesse May.'+'\n\nCreators:\n\nId Software\nNintendo\nMicrosoft\nhttps://Stabyourself.net\nOretil\nAtari');
+            },
+            mrclean: function() {
+                this.echo($('<img src="https://www.ubuy.co.id/productimg/?image=aHR0cHM6Ly9tLm1lZGlhLWFtYXpvbi5jb20vaW1hZ2VzL0kvODFoeFQwZUtQMVMuX0FDX1NMMTUwMF8uanBn.jpg">'));
+            },
+            cat: function() {
+                this.echo($('<img src="https://media.glamour.com/photos/580e1fc08bd9950546d001f6/master/pass/giphy%20(11).gif">'));
+            },
+            iframe: function(...url) {
+                if(typeof url[0] === "undefined"){
+                    this.echo($('<iframe src="https://bing.com" width=1000px height=500px>'));
+
+                }else{
+                    this.echo($('<iframe src = "'+ url +'" width=1000px height=500px >'));
+                }
+            },
+            monke: function() {
+                this.echo($('<img src="../images/gorilla.gif">'));
+            },
+            "mari0.exe": function() {
+                this.echo("Running MARI0.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:700px; top:0; bottom:0; left:0; right:0;" src="https://tannerrogalsky.com/mari0/">'));
+            }, 
+            "solitare.exe": function() {
+                this.echo("Running SOLITARE.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:360px; top:0; bottom:0; left:0; right:0;" src="../games/solitude/index.html">'));
+            },  
+            "desmume.exe": function() {
+                this.echo("Running DESMUME.EXE...")
+                this.echo($('<embed id="game" style="width:450px; height:660px; top:0; bottom:0; left:0; right:0;" src="https://ds.44670.org/">'));
+            },
+            "gba.exe": function() {
+                this.echo("Running GBA.EXE...")
+                this.echo($('<embed id="game" style="width:500px; height:360px; top:0; bottom:0; left:0; right:0;" src="https://ds.44670.org/gba/">'));
+            },
+            "hl.exe": function() {
+                this.echo("Running HL.EXE...")
+                this.echo($('<embed id="game" style="width:500px; height:500px; top:0; bottom:0; left:0; right:0;" src="http://webhl.gq">'));
+            },
+            "sand.exe": function() {
+                this.echo("Running SAND.EXE...")
+                this.echo($('<embed id="game" style="width:700px; height:700px; top:0; bottom:0; left:0; right:0;" src="../games/sand/index.html">'));
+            },
+            "cookie.exe": function() {
+                this.echo("Running COOKIE.EXE...")
+                this.echo($('<embed id="game" style="width:1500px; height:650px; top:0; bottom:0; left:0; right:0;" src="../games/cookieclicker/index.html">'));
+            },
+            "doom.exe": function() {
+                this.echo("Running DOOM.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:750px; top:0; bottom:0; left:0; right:0;" src="https://silentspacemarine.com/">'));
+            },
+            "fnf.exe": function() {
+                this.echo("Running FNF.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:600px; top:0; bottom:0; left:0; right:0;" src="https://fnfce.mycommand.xyz/playable/es/">'));
+            },
+            "radius.exe": function() {
+                this.echo("Running RADIUS.EXE...")
+                this.echo($('<embed id="game" style="width:900px; height:620px; top:0; bottom:0; left:0; right:0;" src="../games/radiusraid/index.html">'));
+            },
+            "flappybird.exe": function() {
+                this.echo("Running FLAPPYBIRD.EXE...")
+                this.echo($('<embed id="game" style="width:900px; height:620px; top:0; bottom:0; left:0; right:0;" src="../games/flappybird/index.html">'));
+            },
+            "gdash.exe": function() {
+                this.echo("Running GDASH.EXE...")
+                this.echo($('<embed id="game" style="width:900px; height:620px; top:0; bottom:0; left:0; right:0;" src="../games/geometrydash/index.html">'));
+            },
+            "n64.exe": function() {
+                this.echo("Running N64.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="https://www.neilb.net/n64wasm/">'));
+            },
+            "fortnite.exe": function() {
+                this.echo("Running FORTNITE.EXE(may take a few seconds)...")
+                this.echo($("<meta http-equiv='refresh' content='5; URL=https://www.youtube.com/watch?v=dQw4w9WgXcQ' />"))
+            },
+            "atari.exe": function() {
+                this.echo("Running ATARI.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="../emulators/atari-gameroom/index.html">'))
+            },
+            "movies.exe": function() {
+                this.echo("Running MOVIES.EXE...")
+                this.echo($("<meta http-equiv='refresh' content='2; URL=https://f2movies.vc/' />"))
+            },
+            "windows.exe": function() {
+                this.echo("Running WINDOWS.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="https://98.js.org/">'))
+            },
+            "company.exe": function() {
+                this.echo("Running COMPANY.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/spacecompany/index.html">'))
+            },
+            "cheems.exe": function() {
+                this.echo("Cheemsing...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/cheems1/index.html">'))
+            },
+            "cheems2.exe": function() {
+                this.echo("Cheemsing Again...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/cheems/index.html">'))
+            },
+            "blueball.exe": function() {
+                this.echo("RUNNING BLUEBALL.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/blueball/index.html">'))
+            },
+            "wolf3d.exe": function() {
+                this.echo("RUNNING WOLF3D.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="https://demo.os-js.org/apps/Wolfenstein/html5-wolfenstein3D/index.html">'))
+            },
+            "2048.exe": function() {
+                this.echo("Running 2048.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/2048/index.html">'))
+            },
+            "asteriods.exe": function() {
+                this.echo("Running ASTEROIDS.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/asteroids/index.html">'))
+            },
+            "snake.exe": function() {
+                this.echo("Running SNAKE.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/snake/index.html">'))
+            },
+            "nes.exe": function() {
+                this.echo("Running NES.EXE...")
+                this.echo($('<embed id="game" style="width:500px; height:500px; top:0; bottom:0; left:0; right:0;" src="../emulators/nes/index.html">'))
+            },
+            "psx.exe": function() {
+                this.echo("Running PSX.EXE...")
+                this.echo($('<embed id="game" style="width:500px; height:500px; top:0; bottom:0; left:0; right:0;" src="../emulators/psx/index.html">'))
+            },
+            "gb.exe": function() {
+                this.echo("Running GB.EXE...")
+                this.echo($('<embed id="game" style="width:700px; height:500px; top:0; bottom:0; left:0; right:0;" src="../emulators/gameboy/index.html">'))
+            },
+            "warrior.exe": function() {
+                this.echo("Running WARRIOR.EXE...")
+                this.echo($('<embed id="game" style="width:700px; height:500px; top:0; bottom:0; left:0; right:0;" src"https://warriorjs.com/">'))
+            },
+            "quake.exe": function() {
+                this.echo("Running QUAKE.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:600px; top:0; bottom:0; left:0; right:0;" src="https://www.netquake.io/">'))
+            },
+            "racer.exe": function() {
+                this.echo("Running RACER.EXE...")
+                this.echo($('<embed id="game" style="width:500px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/racer/index.html">'))
+            },
+            "bounceback.exe": function() {
+                this.echo("Running BOUNCEBACK.EXE...")
+                this.echo($('<embed id="game" style="width:500px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/bounceback/index.html">'))
+            },
+            "chroma.exe": function() {
+                this.echo("Running CHROMA.EXE...")
+                this.echo($('<embed id="game" style="width:500px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/chromaincident/index.html">'))
+            },
+            "minecraft.exe": function() {
+                this.echo("Running MINECRAFT.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="https://knowledgehurricane.xyz/g/mc/index.html">'))
+            },
+            "fbf.exe": function() {
+                this.echo("Running FBF.EXE...")
+                this.echo($('<embed id="game" style="width:500px; height:500px; top:0; bottom:0; left:0; right:0;" src="https://games.engineering.com/factoryballsforever/index.html">'))
+            },
+            "retrohaunt.exe": function() {
+                this.echo("Running RETROHAUNT.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/retrohaunt/index.html">'))
+            },
+            "evilglitch.exe": function() {
+                this.echo("Running EVILGLITCH.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/evilglitch/index.html">'))
+            },
+            "sleepingbeauty.exe": function() {
+                this.echo("Running SLEEPINGBEAUTY.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/sleepingbeauty/index.html">'))
+            },
+            "drift.exe": function() {
+                this.echo("Running DRIFT.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="https://zayaruzostreetorgan.com/uploads/5/5/6/7/5567194/custom_themes/136734914403232081/drift_hunter.html">'))
+            },
+            "car.exe": function() {
+                this.echo("Running CAR.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="https://car.js.org/">'))
+            },
+            "wordle.exe": function() {
+                this.echo("Running WORDLE.EXE...")
+                this.echo($('<embed id="game" style="width:700px; height:700px; top:0; bottom:0; left:0; right:0;" src="https://wordplay.com">'))
+            },
+            "xx142-b2.exe": function() {
+                this.echo("Running XX142-B2.EXE...")
+                this.echo($('<embed id="game" style="width:1000px; height:500px; top:0; bottom:0; left:0; right:0;" src="../games/xx142-b2exe/index.html">'))
+            },
+
+            figlet: function(words, ...font){
+                if(typeof font[0] === "undefined"){
+                    this.echo(() => render(this, words, "Standard"));
+
+                }else{
+                    this.echo(() => render(this, words, font));
+                }
+            },
+            help: function(){
+
+                this.echo(() => render(this, "NO COMMANDS?", "Computer")+"\n⣞⢽⢪⢣⢣⢣⢫⡺⡵⣝⡮⣗⢷⢽⢽⢽⣮⡷⡽⣜⣜⢮⢺⣜⢷⢽⢝⡽⣝\n ⠸⡸⠜⠕⠕⠁⢁⢇⢏⢽⢺⣪⡳⡝⣎⣏⢯⢞⡿⣟⣷⣳⢯⡷⣽⢽⢯⣳⣫⠇\n ⠀⠀⢀⢀⢄⢬⢪⡪⡎⣆⡈⠚⠜⠕⠇⠗⠝⢕⢯⢫⣞⣯⣿⣻⡽⣏⢗⣗⠏⠀\n ⠀⠪⡪⡪⣪⢪⢺⢸⢢⢓⢆⢤⢀⠀⠀⠀⠀⠈⢊⢞⡾⣿⡯⣏⢮⠷⠁⠀⠀ ⠀\n⠀⠀⠈⠊⠆⡃⠕⢕⢇⢇⢇⢇⢇⢏⢎⢎⢆⢄⠀⢑⣽⣿⢝⠲⠉⠀⠀⠀⠀ ⠀\n⠀⠀⠀⠀⡿⠂⠠⠀⡇⢇⠕⢈⣀⠀⠁⠡⠣⡣⡫⣂⣿⠯⢪⠰⠂⠀⠀⠀⠀ ⠀\n⠀⠀⠀⡦⡙⡂⢀⢤⢣⠣⡈⣾⡃⠠⠄⠀⡄⢱⣌⣶⢏⢊⠂⠀⠀⠀⠀⠀⠀ ⠀\n⠀⠀⠀⢝⡲⣜⡮⡏⢎⢌⢂⠙⠢⠐⢀⢘⢵⣽⣿⡿⠁⠁⠀⠀⠀⠀⠀⠀⠀ ⠀\n⠀⠀⠀⠨⣺⡺⡕⡕⡱⡑⡆⡕⡅⡕⡜⡼⢽⡻⠏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀\n⠀⠀⠀⣼⣳⣫⣾⣵⣗⡵⡱⡡⢣⢑⢕⢜⢕⡝⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀\n⠀⠀⣴⣿⣾⣿⣿⣿⡿⡽⡑⢌⠪⡢⡣⣣⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀\n⠀⠀⡟⡾⣿⢿⢿⢵⣽⣾⣼⣘⢸⢸⣞⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀\n⠀⠀⠀⠁⠇⠡⠩⡫⢿⣝⡻⡮⣒⢽⠋⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ \n\nhelloiam:\nusage: helloiam {name}, says, 'Hello {name} Welcome to this terminal.\n\nfiglet: \nusage: figlet {words} {font [ex: Doom, Standard, LCD, Computer, Slant, find more at https://unpkg.com/browse/figlet@1.4.0/fonts/, Side Note: if you type an incorrect font it will not show anything, but if you just type the words with no font it will use the standard font]}\n\nmari0.exe:\nOpens mari0.\n\nsolitare.exe:\nOpens Solitare\n\nclear:\nClears entire terminal\n\ndir:\nshows files in terminal.\n\nroms:\nWill give you a link to the directory to the roms\n\nquake:\nwill give you a link to the pak1.pak for the full version of quake.\n\nThere are more commands but they are hidden :)")
+            },            
+            
+            
+            
+        },{
+        checkArity: false,
+        greetings: false,
+        completion: true,
+        onInit() {
+            this.echo(() => render(this, 'FILEGROUNDS TERMINAL', 'Doom') +
+                `\n[[;rgba(255,255,255,0.99);]Version: ${$.terminal.version}]. Type [[;rgba(255,255,255,0.99);]help] to get a list of commands.\n`)
+        }
+    });
+}
+
+function render(term, text, font) {
+    const cols = term.cols();
+    return figlet.textSync(text, {
+        font: font || 'Standard',
+        width: cols,
+        whitespaceBreak: true
+    });
+    
+}
+        
+        </script>
+</body>
+</html>

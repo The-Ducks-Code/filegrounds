@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquarium Evasion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+<style>
+    body {
+        background-image: linear-gradient(#2532a5 50%, #737ee4);
+        background-attachment: fixed;
+        font-family: 'Press Start 2P', sans-serif;
+        
+    }
+    h1{
+        font-size: 50px;
+    }
+    h2{
+        font-size: 30px;
+    }
+    #info{
+        opacity: 0;
+        animation: fadein 3s forwards;
+        animation-delay: 4.5s;
+    }
+    #hscore{
+        font-style: oblique;
+    }
+    #start{
+        transition: 1.5s;
+    }
+    #start:hover{
+        transform: translateY(-3px);
+    }
+    #leaderboard{
+      animation: fadein 3s forwards;
+      transition: 0.5s ease-out;
+    }
+    #leaderboard:hover{
+      transform: translateY(-3px);
+      transition: 0.5s ease-out;
+    }
+    #github{
+        
+      animation: flyInBottom 1s forwards ease-in-out;
+      transition: 0.5s ease-out;
+      transform: rotateY(0deg);
+      }
+    #github:hover{
+        scale: 1.1;
+        transform: rotateY(180deg);
+    }
+    /* on load of info, set opacity to 1*/
+    @keyframes fadein {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @keyframes flyInBottom{
+        0%{
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        1%{
+          opacity: 1;
+        }
+        100%{
+            transform: translateY(0);
+        }
+      
+    }
+    /*on hover for start, make a line appear beneath it smoothly*/
+    
+    
+
+    
+
+</style>
+<body>
+    <script>
+        let start = document.getElementById("start")
+        let title = document.getElementById("title")
+        let info = document.getElementById("info")
+        let board = document.getElementById("leaderboard")
+
+        //put in array
+
+        //when page loads, all text on page will be typed out
+        window.onload = function() {
+            fetch('/highscore', {
+            method: 'POST',
+
+        }).then(response => response.text()).then(data => {
+            console.log(data)
+            document.getElementById("hscore").innerHTML = data
+        })
+            //yes ik theres a better way to do this but js is stupid and arrays are bad
+            let text = title.innerHTML
+            title.innerHTML = ""
+            for (let i = 0; i < text.length; i++) {
+                setTimeout(function() {
+                    title.innerHTML += text.charAt(i)
+                }, 1200/text.length * i)
+            }
+            
+            let toes = start.innerHTML
+            start.innerHTML = ""
+            for (let i = 0; i < toes.length; i++) {
+                setTimeout(function() {
+                    start.innerHTML += toes.charAt(i)
+                }, 1200/toes.length * i)
+            }
+            
+            
+            
+        }
+        
+    </script>
+    <div style="text-align: center; cursor: default"> 
+        <h1 id = "title">Aquarium Evasion</h1> 
+        <div style="margin: auto;"> <p id = "info">Click on start to begin the game.</p> </div>
+        <h2 id="start" style="cursor:pointer"onclick="window.location = 'game.html'">Start</h2>
+        <br>
+    </div>
+    <!-- center a div absolutely on bottom right of page have a github icon -->
+    <div style="position: absolute; bottom: 0; right: 0; margin: 10px; transform: translateY(0deg)">
+      <a href="https://github.com/WilyHyperion/LosAltosHacks">
+        <img id="github" src="Img/github-mark-white.png" alt="github" width="30" height="30">
+      </a>
+    </div>
+    <!-- div at absolute bottom center of page -->
+    <div style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); margin: -6px;">
+    </div>
+    
+    
+</body>
+
+</html>

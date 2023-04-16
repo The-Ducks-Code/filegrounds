@@ -1,0 +1,27 @@
+FILEGROUNDS V11.1 changelog 10/17/22
+
+-Improved graphical features such as an impoved mouse trail
+
+-Deleted 500mb+ of unnecessary files and better organized them
+
+-Added a bunch of games and added mesacomplex, more games, parkers music repo, and manga.
+
+-started changelog file
+
+FILEGROUNDS V11.2 changelog 3/3/23
+
+- removed games that don't work
+
+- added new games and emulators
+
+- fixed a few things
+
+FILEGROUNDS V11.3 changelog 4/14/23
+
+- added Aquarium Evasion
+
+- removed games that don't work
+
+- bug fixes
+
+- improvements

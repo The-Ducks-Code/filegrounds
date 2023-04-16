@@ -1,0 +1,25 @@
+body {
+    padding: 20px;
+    font-family: pixel;
+    color:white;
+    background-color:black;
+  }
+  @font-face {
+    font-family: "pixel";
+    src: url("fonts/minecraft-webfont.woff2");
+    src: url("fonts/minecraft-webfont.woff") format("woff"),
+}
+a {
+  color:
+  white;
+  
+    transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+    transition-duration: .5s;
+  }
+  a:hover {
+    transform: rotate(4deg);
+    margin-left: 8px;
+  
+    color:#333;
+  
+  }
