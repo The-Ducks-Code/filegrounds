@@ -172,7 +172,7 @@ h1 {
 
 }
 #title {
-  background: linear-gradient(240deg, rgba(16, 18, 60, 0.632) 50%, blue 100%);
+  background: linear-gradient(240deg, rgba(37, 42, 131, 0.632) 50%, blue 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
@@ -227,7 +227,7 @@ h1 {
   -8px 7px #121211;
 }
 #news{
-  background: linear-gradient(240deg, rgba(16, 18, 60, 0.632) 50%, blue 100%);
+  background: linear-gradient(240deg, rgba(41, 46, 139, 0.632) 2%, blue 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 
