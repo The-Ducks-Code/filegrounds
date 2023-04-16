@@ -2,7 +2,7 @@
 ### By a Student for Students, IN FILES :D
 
 ## Demo
-https://the-ducks-code.github.io/filegrounds
+<a href="https://the-ducks-code.github.io/filegrounds">Filegrounds</a>
 
 ## Setting up Filegrounds to run locally:
 
