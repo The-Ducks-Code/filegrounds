@@ -1,5 +1,5 @@
 # FILEGROUNDS
-### By a Student for Students, IN FILES :D
+### By a Student for Students
 
 ## Demo
 <a href="https://the-ducks-code.github.io/filegrounds">Filegrounds</a>
@@ -20,4 +20,4 @@ You can also click on links around the site to go to different things.
 ### Thank you for using filegrounds!
 
 
-© The Duck (Declan Huff) 2021-2023
+© The-Ducks-Code 2021-2023
